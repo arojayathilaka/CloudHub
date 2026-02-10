@@ -52,5 +52,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: cloudhub-product-api
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_PRODUCTAPI }}
           package: .
