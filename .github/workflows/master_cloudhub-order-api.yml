@@ -21,11 +21,11 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      # Build only Product Service
-      - name: Build Product Service
+      # Build only Order Service
+      - name: Build Order Service
         run: dotnet build OrderService.csproj --configuration Release
 
-      # Publish only Product Service
+      # Publish only Order Service
       - name: Publish Product Service
         run: dotnet publish OrderService.csproj -c Release -o publish
 
@@ -33,7 +33,7 @@ jobs:
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
         with:
-          name: product-service
+          name: order-service
           path: publish
 
   deploy:
@@ -45,12 +45,12 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: product-service
+          name: order-service
 
       # Deploy to Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: cloudhub-product-api
+          app-name: cloudhub-order-api
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ORDERAPI }}
           package: .
