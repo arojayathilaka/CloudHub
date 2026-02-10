@@ -20,11 +20,11 @@ jobs:
 
       # 👉 Build ONLY Auth Service
       - name: Build Auth Service
-        run: dotnet build backend/AuthService.csproj --configuration Release
+        run: dotnet build AuthService.csproj --configuration Release
 
       # 👉 Publish ONLY Auth Service
       - name: Publish Auth Service
-        run: dotnet publish backend/AuthService.csproj -c Release -o publish
+        run: dotnet publish AuthService.csproj -c Release -o publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -55,3 +55,4 @@ jobs:
           app-name: cloudhub-auth-api
           slot-name: Production
           package: .
+
