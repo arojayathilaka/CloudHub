@@ -48,4 +48,4 @@ app.MapPost("/auth/login", async ([FromBody] LoginRequest req, Container contain
     return Results.Ok(new { token, userId = dbUser.UserId, email = dbUser.Email });
 });
 
-app.Run("http://localhost:5001");
+app.Run();
