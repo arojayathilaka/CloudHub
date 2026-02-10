@@ -108,4 +108,4 @@ app.MapGet("/orders/user/{userId}", async (string userId, Container container) =
     return Results.Ok(results);
 }).RequireAuthorization();
 
-app.Run("http://localhost:5003");
+app.Run();
