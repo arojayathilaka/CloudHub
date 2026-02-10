@@ -80,4 +80,4 @@ app.MapPut("/products/{id}", async (string id, [FromBody] ProductRequest req, Co
     }
 }).RequireAuthorization();
 
-app.Run("http://localhost:5002");
+app.Run();
