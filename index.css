@@ -1,3 +1,6 @@
+  
+  @import "tailwindcss";
+
   /* Base styles for the Azure Microservices Portal */
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(10px); }
@@ -35,6 +38,9 @@
     flex-direction: column;
   }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Restore body defaults if needed */
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background-color: #f9fafb;
+}

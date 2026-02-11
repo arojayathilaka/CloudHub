@@ -1,7 +1,6 @@
 
 import axios from 'axios';
-import { Product, Order, User } from '../types';
-import { mockApi } from './mockApi';
+import type { Product, Order, User } from '../types';
 
 // Microservice Endpoints
 const SERVICES = {
