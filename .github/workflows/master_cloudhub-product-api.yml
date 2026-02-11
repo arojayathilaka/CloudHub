@@ -23,11 +23,11 @@ jobs:
 
       # Build only Product Service
       - name: Build Product Service
-        run: dotnet build ProductService.csproj --configuration Release
+        run: dotnet build backend/ProductService.csproj --configuration Release
 
       # Publish only Product Service
       - name: Publish Product Service
-        run: dotnet publish ProductService.csproj -c Release -o publish
+        run: dotnet publish backend/ProductService.csproj -c Release -o publish
 
       # Upload artifact
       - name: Upload publish artifact
