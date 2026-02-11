@@ -23,11 +23,11 @@ jobs:
 
       # Build only Auth Service
       - name: Build Auth Service
-        run: dotnet build AuthService.csproj --configuration Release
+        run: dotnet build backend/AuthService.csproj --configuration Release
 
       # Publish only Auth Service
       - name: Publish Auth Service
-        run: dotnet publish AuthService.csproj -c Release -o publish
+        run: dotnet publish backend/AuthService.csproj -c Release -o publish
 
       # Upload artifact
       - name: Upload publish artifact
@@ -54,3 +54,4 @@ jobs:
           app-name: cloudhub-auth-api
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
+
