@@ -85,7 +85,7 @@ export const api = {
     );
   },
 
-  placeOrder: async (userId: string, items: any[], totalAmount: number): Promise<Order> => {
+  placeOrder: async (items: any[], totalAmount: number): Promise<Order> => {
     return handleRequest(
       orderApi.post('/orders', { items, totalAmount }),
     );

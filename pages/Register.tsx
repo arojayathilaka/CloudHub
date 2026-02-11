@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { mockApi } from '../services/mockApi';
 import { api } from '../services/api';
 
 interface RegisterProps {

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Order } from '../types';
+import type { Order } from '../types';
 import { api } from '../services/api';
 
 interface OrderListProps {

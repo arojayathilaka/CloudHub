@@ -38,10 +38,12 @@ export interface OrderCreatedEvent {
   createdAt: string;
 }
 
-export enum Page {
-  LOGIN = 'login',
-  REGISTER = 'register',
-  PRODUCTS = 'products',
-  ORDERS = 'orders',
-  DOCS = 'docs'
-}
+export const Page = {
+  LOGIN: 'login',
+  REGISTER: 'register',
+  PRODUCTS: 'products',
+  ORDERS: 'orders',
+  DOCS: 'docs',
+} as const;
+
+export type Page = (typeof Page)[keyof typeof Page];

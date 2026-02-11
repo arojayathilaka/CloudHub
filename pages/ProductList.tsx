@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Product } from '../types';
+import type { Product } from '../types';
 import { api } from '../services/api';
 
 interface ProductListProps {
   userId: string;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ userId }) => {
+const ProductList: React.FC<ProductListProps> = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [ordering, setOrdering] = useState<string | null>(null);
@@ -26,7 +26,7 @@ const ProductList: React.FC<ProductListProps> = ({ userId }) => {
   const handleBuy = async (p: Product) => {
     setOrdering(p.id);
     try {
-      await api.placeOrder(userId, [{ productId: p.id, productName: p.name, quantity: 1, price: p.price }], p.price);
+      await api.placeOrder([{ productId: p.id, productName: p.name, quantity: 1, price: p.price }], p.price);
       alert('Order placed successfully! Check "My Orders" tab.');
     } catch (error) {
       alert('Failed to place order. Ensure Order Service is running.');

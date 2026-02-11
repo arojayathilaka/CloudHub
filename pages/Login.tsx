@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { User } from '../types';
-import { mockApi } from '../services/mockApi';
+import type { User } from '../types';
 import { api } from '../services/api';
 
 interface LoginProps {

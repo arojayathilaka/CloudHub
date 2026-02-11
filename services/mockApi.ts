@@ -10,19 +10,18 @@ let products: Product[] = [
 ];
 
 let orders: Order[] = [];
-let users: User[] = [];
 
 // Simulate network latency
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export const mockApi = {
   // Auth Service
-  login: async (email: string, pass: string): Promise<User> => {
+  login: async (email: string): Promise<User> => {
     await delay(800);
     return { userId: 'user-123', email, token: 'mock-jwt-token-' + Date.now() };
   },
   
-  register: async (email: string, pass: string): Promise<User> => {
+  register: async (email: string): Promise<User> => {
     await delay(1000);
     return { userId: 'user-' + Math.random().toString(36).substr(2, 9), email, token: 'mock-jwt-token-' + Date.now() };
   },
