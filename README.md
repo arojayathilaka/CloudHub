@@ -1,50 +1,73 @@
-# Azure Microservices Cloud Hub
+# React + TypeScript + Vite
 
-A production-ready architecture demonstrating .NET 8 microservices, React, Azure Cosmos DB, and Azure Service Bus.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🚀 Quick Start (Local)
+Currently, two official plugins are available:
 
-### 1. Infrastructure Requirements
-- **Azure Cosmos DB**: NoSQL API account.
-- **Azure Service Bus**: Standard tier (required for Topics).
-- **Service Bus Topic**: Ensure a topic named `order-events` exists.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### 2. Configure Secrets
-Set the following environment variables on your machine (or in your IDE launch settings):
-```bash
-export Cosmos__ConnectionString="your-cosmos-string"
-export ServiceBus__ConnectionString="your-sb-string"
-export Jwt__Secret="your-32-character-secret-key-minimum"
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-### 3. Run the Backend Services
-Open three separate terminal sessions and run:
-- **Auth Service** (Port 5001):
-  `dotnet run --project backend/AuthService.csproj`
-- **Product Service** (Port 5002):
-  `dotnet run --project backend/ProductService.csproj`
-- **Order Service** (Port 5003):
-  `dotnet run --project backend/OrderService.csproj`
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### 4. Run the Frontend (React + TypeScript)
-Standard browsers cannot execute `.tsx` files directly. You **cannot** use `npx serve .` because it serves files statically without transpilation, leading to "MIME type" errors.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-To run the frontend correctly, use **Vite**:
-```bash
-# Install Vite globally or use npx
-npm install -g create-vite
-# Run with a tool that handles TSX on-the-fly (like Vite or esbuild)
-npx vite
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-*Vite will automatically detect the `index.html` and transpile the `.tsx` files into valid JavaScript for the browser.*
-
-## 🏗️ Architecture Design
-- **Database-per-Service**: Auth, Product, and Order services have isolated Cosmos DB containers.
-- **Event-Driven**: Order Service publishes to Service Bus via the `order-events` topic.
-- **Clean Separation**: Frontend uses an Axios interceptor to automatically inject JWT tokens obtained from the Auth Service.
-- **Resilient UI**: The frontend includes a `mockApi` fallback. if the backends are not reachable, the UI remains functional for demo purposes while displaying a "Simulation Mode" warning.
-
-## 🔧 Troubleshooting MIME Types
-If you see `Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of ""`:
-- This confirms your server is trying to send a `.tsx` file as-is. 
-- **Solution**: Use `vite` or `parcel` instead of `serve`. These tools transpile the code and set the correct `application/javascript` MIME type.
