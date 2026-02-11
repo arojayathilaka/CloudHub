@@ -1,0 +1,9 @@
+
+{
+  "name": "Azure Microservices Cloud Hub",
+  "description": "A high-fidelity dashboard representing a .NET/React microservices architecture using Azure Cosmos DB, Service Bus, and JWT authentication.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
