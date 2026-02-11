@@ -4,9 +4,9 @@ import type { Product, Order, User } from '../types';
 
 // Microservice Endpoints
 const SERVICES = {
-  AUTH: 'http://localhost:5001',
-  PRODUCT: 'http://localhost:5002',
-  ORDER: 'http://localhost:5003'
+  AUTH: 'https://cloudhub-auth-api-b4asdqh2fpd6ebax.centralindia-01.azurewebsites.net',
+  PRODUCT: 'https://cloudhub-product-api-dxbrd3ash0b8d2fk.centralindia-01.azurewebsites.net',
+  ORDER: 'https://cloudhub-order-api-afhefvazbedmg9b2.centralindia-01.azurewebsites.net'
 };
 
 const authApi = axios.create({ baseURL: SERVICES.AUTH, timeout: 10000 });
