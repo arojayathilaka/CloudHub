@@ -23,11 +23,11 @@ jobs:
 
       # Build only Order Service
       - name: Build Order Service
-        run: dotnet build OrderService.csproj --configuration Release
+        run: dotnet build backend/OrderService.csproj --configuration Release
 
       # Publish only Order Service
       - name: Publish Product Service
-        run: dotnet publish OrderService.csproj -c Release -o publish
+        run: dotnet publish backend/OrderService.csproj -c Release -o publish
 
       # Upload artifact
       - name: Upload publish artifact
