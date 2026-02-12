@@ -9,9 +9,9 @@ const SERVICES = {
   ORDER: 'https://cloudhub-order-api-afhefvazbedmg9b2.centralindia-01.azurewebsites.net'
 };
 
-const authApi = axios.create({ baseURL: SERVICES.AUTH, timeout: 10000 });
-const productApi = axios.create({ baseURL: SERVICES.PRODUCT, timeout: 10000 });
-const orderApi = axios.create({ baseURL: SERVICES.ORDER, timeout: 10000 });
+const authApi = axios.create({ baseURL: SERVICES.AUTH, timeout: 100000 });
+const productApi = axios.create({ baseURL: SERVICES.PRODUCT, timeout: 100000 });
+const orderApi = axios.create({ baseURL: SERVICES.ORDER, timeout: 100000 });
 
 // Inject JWT Token into all requests
 const addAuthInterceptor = (instance: any) => {
