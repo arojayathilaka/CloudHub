@@ -37,7 +37,7 @@ const handleRequest = async <T>(request: Promise<any>): Promise<T> => {
     return res.data;
   } catch (error: any) {
     if (error.message === 'Network Error' || error.code === 'ECONNABORTED') {
-      console.warn(`[Microservice Connectivity] Service at ${SERVICES.AUTH} unreachable. Falling back to local simulation.`);
+      console.warn(`[Microservice Connectivity] Service at ${API_BASE} unreachable. Falling back to local simulation.`);
     }
     console.log(error)
     throw error;
