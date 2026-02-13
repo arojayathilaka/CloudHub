@@ -4,18 +4,13 @@ import type { Product, Order, User } from '../types';
 
 const API_TIMEOUT = 100000;
 
-const baseUrl = 'https://cloudhub-gateway.azurewebsites.net';
+const API_BASE = 'https://cloudhub-gateway.azurewebsites.net';
 
 // Microservice Endpoints
-const SERVICES = {
-  AUTH: `${baseUrl}/auth`,
-  PRODUCT: `${baseUrl}/products`,
-  ORDER: `${baseUrl}/orders`
-};
 
-const authApi = axios.create({ baseURL: SERVICES.AUTH, timeout: API_TIMEOUT });
-const productApi = axios.create({ baseURL: SERVICES.PRODUCT, timeout: API_TIMEOUT });
-const orderApi = axios.create({ baseURL: SERVICES.ORDER, timeout: API_TIMEOUT });
+const authApi = axios.create({ baseURL: API_BASE, timeout: API_TIMEOUT });
+const productApi = axios.create({ baseURL: API_BASE, timeout: API_TIMEOUT });
+const orderApi = axios.create({ baseURL: API_BASE, timeout: API_TIMEOUT });
 
 // Inject JWT Token into all requests
 const addAuthInterceptor = (instance: any) => {
