@@ -14,8 +14,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("GatewayCors", policy =>
     {
         policy
-            //.AllowAnyOrigin()  
-            .WithOrigins("https://black-cliff-081510d0f.1.azurestaticapps.net") // 🔒 PROD
+            .AllowAnyOrigin()  
+            //.WithOrigins("https://black-cliff-081510d0f.1.azurestaticapps.net") // 🔒 PROD
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
