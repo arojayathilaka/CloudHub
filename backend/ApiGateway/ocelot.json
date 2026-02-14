@@ -1,11 +1,11 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/auth/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "cloudhub-auth-api.azurewebsites.net",
+          "Host": "https://cloudhub-auth-api-b4asdqh2fpd6ebax.centralindia-01.azurewebsites.net",
           "Port": 443
         }
       ],
