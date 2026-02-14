@@ -1,0 +1,35 @@
+name: Build and Deploy API Gateway
+
+on:
+  push:
+    branches:
+      - master   # change if using main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore backend/ApiGateway/ApiGateway.csproj
+
+      - name: Build
+        run: dotnet build backend/ApiGateway/ApiGateway.csproj --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish backend/ApiGateway/ApiGateway.csproj -c Release -o publish
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: cloudhub-gateway
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_GATEWAY }}
+          package: publish
