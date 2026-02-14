@@ -17,7 +17,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "cloudhub-product-api.azurewebsites.net",
+          "Host": "cloudhub-product-api-dxbrd3ash0b8d2fk.centralindia-01.azurewebsites.net",
           "Port": 443
         }
       ],
@@ -29,7 +29,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "cloudhub-order-api.azurewebsites.net",
+          "Host": "cloudhub-order-api-afhefvazbedmg9b2.centralindia-01.azurewebsites.net",
           "Port": 443
         }
       ],
